@@ -20,12 +20,34 @@
 //    - quali numeri sono stati indovinati
 
 
-
+const input = document.querySelector('#answers-form');
 const numeriRandom = [];
-for(i=0 ; i<5;i++){
-    numeroRandom = Math.floor(Math.random()*10)+1;
-    numeriRandom.push(numeriRandom);
+for (i = 0; i < 5; i++) {
+    let numeroRandom = Math.floor(Math.random()*10) + 1;
+    numeriRandom.push(numeroRandom);
+    console.log(numeriRandom);
 }
-const show = document.querySelector('#numbers-List');
-show.innerHTML = ``
+const numberi = document.querySelector('#numbers-list');
+numberi.innerHTML = `<li class="badge text-bg-dark">${numeriRandom[0]}</li>
+    <li class="badge text-bg-dark">${numeriRandom[1]}</li>
+    <li class="badge text-bg-dark">${numeriRandom[2]}</li>
+    <li class="badge text-bg-dark">${numeriRandom[3]}</li>
+    <li class="badge text-bg-dark">${numeriRandom[4]}</li>`;
+
+let countDown = 31;
+const countDownShow = document.querySelector('#countdown');
+const timer = ()=>{
+    countDown --;
+    if(countDown>=0){
+        console.log(countDown);
+        countDownShow.innerHTML = `${countDown}`;
+    }else {
+        countDownShow.classList.add('d-none');
+        numberi.classList.add('d-none');
+        input.classList.remove('d-none');
+        clearInterval(interval);
+
+        }
+    }
+const interval = setInterval(timer , 1000);
 
