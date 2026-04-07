@@ -23,16 +23,18 @@
 const input = document.querySelector('#answers-form');
 const numeriRandom = [];
 for (i = 0; i < 5; i++) {
-    let numeroRandom = Math.floor(Math.random()*10) + 1;
+    let numeroRandom = Math.floor(Math.random()*50) + 1;
     numeriRandom.push(numeroRandom);
     console.log(numeriRandom);
 }
 const numberi = document.querySelector('#numbers-list');
-numberi.innerHTML = `<li class="badge text-bg-dark">${numeriRandom[0]}</li>
-    <li class="badge text-bg-dark">${numeriRandom[1]}</li>
-    <li class="badge text-bg-dark">${numeriRandom[2]}</li>
-    <li class="badge text-bg-dark">${numeriRandom[3]}</li>
-    <li class="badge text-bg-dark">${numeriRandom[4]}</li>`;
+let html = '';
+
+for (let i = 0; i < numeriRandom.length; i++) {
+    html += `<li class="badge text-bg-dark">${numeriRandom[i]}</li>`;
+}
+numberi.innerHTML = html;
+
 
 let countDown = 31;
 const countDownShow = document.querySelector('#countdown');
@@ -51,3 +53,14 @@ const timer = ()=>{
     }
 const interval = setInterval(timer , 1000);
 
+const numbersOfInput=document.querySelectorAll('#input-group')
+
+const button = document.querySelector('#btn');
+
+button.addEventListener("click",()=>{
+    const userNumbers = [];
+    numbersOfInput.forEach(input => {
+        const value = Number(input.value);
+        userNumbers.push(value);
+    });
+});
