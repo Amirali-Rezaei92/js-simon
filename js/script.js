@@ -36,7 +36,7 @@ for (let i = 0; i < numeriRandom.length; i++) {
 numeri.innerHTML = html;
 
 
-let countDown = 30;
+let countDown = 10;
 const countDownShow = document.querySelector('#countdown');
 const timer = () => {
     countDown--;
@@ -59,7 +59,7 @@ const button = document.querySelector('#btn');
 button.addEventListener("click", (e) => {
     e.preventDefault();
     document.querySelector('#instructions').classList.add('d-none');
-    
+
 
     const userNumbers = [];
     numbersOfInput.forEach(input2 => {
@@ -68,15 +68,26 @@ button.addEventListener("click", (e) => {
     });
 
     input.classList.add('d-none');
-    
+
+
+    let rightNumbers = 0;
     let html2 = '';
     for (let i = 0; i < userNumbers.length; i++) {
         if (numeriRandom.includes(userNumbers[i])) {
             html2 += `<li class="badge text-bg-success">${userNumbers[i]}</li>`;
+            rightNumbers++;
         } else {
             html2 += `<li class="badge text-bg-danger">${userNumbers[i]}</li>`;
         }
     } numeri.innerHTML = html2;
     numeri.classList.remove('d-none');
+    const text = document.querySelector('#message');
+    if (rightNumbers === 5) {
+        text.classList.remove('text-danger');
+        text.classList.add('text-success');
+        text.innerHTML = `Hai inserito correttamente tutti i numeri`;
+    } else {
+        text.innerHTML = `Hai inserito correttamente <span class="text-success"> ${rightNumbers} </span> numeri su <span class="text-dark">5</span>.`;
+    }
 });
 
